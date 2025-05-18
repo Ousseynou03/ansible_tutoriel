@@ -22,9 +22,41 @@ dans le serveur , vérifie que la clé a été bien copié au niveau de authoriz
 
 ## Créez une clé ssh qui est spécifique à Ansible et copiez cette derniére aussi dans chaque serveur 
 
+
 $ ssh-keygen -t ed25519 -C "ansible"
 Generating public/private ed25519 key pair.
 Enter file in which to save the key (/c/Users/weuzi/.ssh/id_ed25519): /c/Users/weuzi/.ssh/ansible
 
 NB : Puisque une clé sous le non de id_ed25519 existe déjà, pour ne pas l'écraser, on crée un nouveau nom pour clé ansible
+
+
+## Vérifiez que ansible peut se connecter aux machines via ssh en lançant avec le module ping
+
+ansible all --key-file ~/.ssh/ansible -i inventory.ini -m ping
+
+Le résultat donne : 
+<code>
+$ ansible all --key-file ~/.ssh/ansible -i inventory.ini -m ping
+192.168.200.130 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+192.168.200.131 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+</code>
+
+
+## ansible all --key-file ~/.ssh/ansible -i inventory.ini -m gather_facts
+
+Cette commande nous récupérer des macros informations sur les différents que l'on a spécifié dans le inventory.ini
+
+
 
