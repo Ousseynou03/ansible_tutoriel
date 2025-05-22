@@ -11,7 +11,7 @@ ssh username@Ip ensuite rentrer le password demandé
 ## Créez une paire de clé ssh pour le user de la machine où les commandes ansibles seront exécutées
  # Vérifie d'abord si dés clé pub/pri existent : ls -ls ~/.ssh
  Sinon il faut en générer une : 
- ssh-keygen -t ed_ed25519 -c "just comment"
+ ssh-keygen -t ed_ed25519 -C "just comment"
 
 
 ## Copy cette clé dans chaque serveur
