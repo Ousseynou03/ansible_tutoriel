@@ -1,5 +1,7 @@
 ### Ceci sont les étapes pour configuer efficacement Ansible
 
+## NB : Pour commencer, tu peux juste créer deux VMs avec VMWare et le tour est joué pour tester tes premiers pas avec Ansible
+
 ## Dans un premier temps il faut se rassurer que openssh est dèjà dans les serveurs cible
 
 si ce n'est pas le cas, effectuez l'installation avec : sudo apt install openssh-server (Sur ubuntu)
@@ -23,13 +25,17 @@ dans le serveur , vérifie que la clé a été bien copié au niveau de authoriz
 ## Créez une clé ssh qui est spécifique à Ansible et copiez cette derniére aussi dans chaque serveur 
 
 
-$ ssh-keygen -t ed25519 -C "ansible"
+ssh-keygen -t ed25519 -C "ansible"
 Generating public/private ed25519 key pair.
 donner le chemin de votre avec le ansible (Ex. ~/home/.ssh/ansible) sinon cette nouvelle clé va écraser l'ancienne.
 
 NB : Puisque une clé sous le non de id_ed25519 existe déjà, pour ne pas l'écraser, on crée un nouveau nom pour clé ansible
 
+## Nous allons à présent commencer à interagir avec Ansible.
 
+On doit d'abord l'installer dans la machine hôte avec la commande suivante : <code> pip install ansible </code>
+
+## NB : Ansible n'est pas compatible avec windows, veuillez utiliser un wsl et exécuter là-bas toutes les commandes relatif à Ansible.
 ## Vérifiez que ansible peut se connecter aux machines via ssh en lançant avec le module ping
 
 ansible all --key-file ~/.ssh/ansible -i inventory.ini -m ping
