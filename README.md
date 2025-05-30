@@ -25,7 +25,7 @@ dans le serveur , vérifie que la clé a été bien copié au niveau de authoriz
 
 $ ssh-keygen -t ed25519 -C "ansible"
 Generating public/private ed25519 key pair.
-Enter file in which to save the key (/c/Users/weuzi/.ssh/id_ed25519): /c/Users/weuzi/.ssh/ansible
+donner le chemin de votre avec le ansible (Ex. ~/home/.ssh/ansible) sinon cette nouvelle clé va écraser l'ancienne.
 
 NB : Puisque une clé sous le non de id_ed25519 existe déjà, pour ne pas l'écraser, on crée un nouveau nom pour clé ansible
 
@@ -88,5 +88,22 @@ Par exemple cette commande suivante va échouer :
 On voit donc qu'avec ces commandes, on peut installer tout ce que l'on veut dans tous les serveurs, mais cela risque de ne pas être pratique du tout s'il y'a plusieurs installations à effectuer.
 
 ## On va de ce pas, créer ce qu'on appelle des playbooks pour centraliser toutes les installations à effectuer dans un script bien organisé.
+
+Aprés avoir écris le script d'installation, exécuter la commande suivante pour installer apapche2 sur les deux machines :
+voici le playbook d'installation d'apache
+
+
+    <code> 
+    ---
+    - hosts: all
+        become: true
+        tasks:
+
+        - name: Install Apache2 package
+            apt:
+            name: apache2
+    </code>
+
+    <code> ansible-playbook --key-file ~/.ssh/ansible -i inventory.ini install_apache.yml </code>
 
 
