@@ -1,6 +1,6 @@
 ### Ceci sont les étapes pour configuer efficacement Ansible
 
-## NB : Pour commencer, tu peux juste créer deux VMs avec VMWare et le tour est joué pour tester tes premiers pas avec Ansible
+## NB : Pour commencer, tu peux juste créer deux VMs (Ubuntu) avec VMWare et le tour est joué pour tester tes premiers pas avec Ansible
 
 ## Dans un premier temps il faut se rassurer que openssh est dèjà dans les serveurs cible
 
